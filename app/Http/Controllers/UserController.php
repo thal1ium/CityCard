@@ -9,7 +9,7 @@ class UserController extends Controller
 {
     public function index() {
         if (!Auth::check()) {
-            return redirect()->route('auth.show.login');
+            return redirect()->route('user.show.login');
         }
 
         return view('home');
