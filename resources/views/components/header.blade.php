@@ -17,11 +17,14 @@
     <!-- Right elements -->
     <div class="d-flex align-items-center gap-1">
       @guest
-        <a href="/login" class="btn btn-primary">Увійти</a>
-        <a href="/registration" class="btn btn-outline-primary">Реєстрація</a>
+        <a href="{{ Route('user.show.login') }}" class="btn btn-primary">Увійти</a>
+        <a href="{{ Route('user.show.register') }}" class="btn btn-outline-primary">Реєстрація</a>
       @endguest
       @auth
-        <a href="/logout" class="btn btn-outline-primary">Logout</a>
+        <form action="{{ Route('user.logout') }}" method="POST">
+          @csrf
+          <button type="submit" class="btn btn-outline-primary">Logout</button>
+        </form>
       @endauth
     </div>
   </nav>

@@ -9,45 +9,48 @@
             alt="Phone image">
         </div>
         <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-          <form id='user-form'>
-            <!-- Email input -->
-            <h1 class="h1 text-center">Увійти</h1>
-            <div data-mdb-input-init class="form-outline mb-4">
-              <input type="email" id="form1Example13" class="form-control form-control-lg" />
-              <label class="form-label" for="form1Example13">Номер телефону</label>
-            </div>
+          @if ($role === 'user')
+            <form id='user-form' action="{{ Route('user.login') }}" method="POST">
+              @csrf
+              <!-- Email input -->
+              <h1 class="h1 text-center">Увійти</h1>
+              <div data-mdb-input-init class="form-outline mb-4">
+                <input type="tel" id="phone" name="phone" class="form-control form-control-lg" />
+                <label class="form-label" for="phone">Номер телефону</label>
+              </div>
 
-            <!-- Password input -->
-            <div data-mdb-input-init class="form-outline mb-4">
-              <input type="password" id="form1Example23" class="form-control form-control-lg" />
-              <label class="form-label" for="form1Example23">Пароль</label>
-            </div>
+              <!-- Password input -->
+              <div data-mdb-input-init class="form-outline mb-4">
+                <input type="password" id="password" name="password" class="form-control form-control-lg" />
+                <label class="form-label" for="password">Пароль</label>
+              </div>
 
-            <!-- Submit button -->
-            <button type="submit" data-mdb-button-init data-mdb-ripple-init
-              class="btn btn-primary btn-lg btn-block">Увійти</button>
-          </form >
-          <form id='admin-form' class="hide-form">
-            <!-- Email input -->
-            <h1 class="h1 text-center">Увійти для адміна</h1>
-            <div data-mdb-input-init class="form-outline mb-4">
-              <input type="email" id="form1Example13" class="form-control form-control-lg" />
-              <label class="form-label" for="form1Example13">Логін</label>
-            </div>
+              <!-- Submit button -->
+              <button type="submit" data-mdb-button-init data-mdb-ripple-init
+                class="btn btn-primary btn-lg btn-block">Увійти</button>
+            </form>
+          @elseif ($role === 'admin')
+            <form id='admin-form'>
+              <!-- Email input -->
+              <h1 class="h1 text-center">Увійти для адміна</h1>
+              <div data-mdb-input-init class="form-outline mb-4">
+                <input type="email" id="login" name="login" class="form-control form-control-lg" />
+                <label class="form-label" for="login">Логін</label>
+              </div>
 
-            <!-- Password input -->
-            <div data-mdb-input-init class="form-outline mb-4">
-              <input type="password" id="form1Example23" class="form-control form-control-lg" />
-              <label class="form-label" for="form1Example23">Пароль</label>
-            </div>
+              <!-- Password input -->
+              <div data-mdb-input-init class="form-outline mb-4">
+                <input type="password" id="password" name="password" class="form-control form-control-lg" />
+                <label class="form-label" for="password">Пароль</label>
+              </div>
 
-            <!-- Submit button -->
-            <button type="submit" data-mdb-button-init data-mdb-ripple-init
-              class="btn btn-primary btn-lg btn-block">Увійти</button>
-          </form>
+              <!-- Submit button -->
+              <button type="submit" data-mdb-button-init data-mdb-ripple-init
+                class="btn btn-primary btn-lg btn-block">Увійти</button>
+            </form>
+          @endif
         </div>
       </div>
-      <button type="button" class="btn btn-outline-primary" id="toggle-form-button" style="max-width: 300px">Я адмін</button>
     </div>
   </section>
 </x-layout>
