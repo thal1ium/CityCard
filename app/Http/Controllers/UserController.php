@@ -8,10 +8,6 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     public function index() {
-        if (!Auth::check()) {
-            return redirect()->route('user.show.login');
-        }
-
         return view('home');
     }
 }
