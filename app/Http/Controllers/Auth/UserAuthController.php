@@ -27,9 +27,9 @@ class UserAuthController extends Controller
             'password' => 'required|min:6',
         ]);
 
-        $crendentials = $request->only('phone', 'password');
+        $credentials = $request->only('phone', 'password');
 
-        if (Auth::guard('web')->attempt($crendentials)) {
+        if (Auth::guard('web')->attempt($credentials)) {
             return redirect('/');
         }
 

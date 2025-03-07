@@ -15,7 +15,8 @@
               <!-- Email input -->
               <h1 class="h1 text-center">Увійти</h1>
               <div data-mdb-input-init class="form-outline mb-4">
-                <input type="tel" id="phone" name="phone" class="form-control form-control-lg" />
+                <input type="tel" id="phone" name="phone" class="form-control form-control-lg"
+                  value="{{ old('phone') }}" />
                 <label class="form-label" for="phone">Номер телефону</label>
               </div>
 
@@ -30,11 +31,13 @@
                 class="btn btn-primary btn-lg btn-block">Увійти</button>
             </form>
           @elseif ($role === 'admin')
-            <form id='admin-form'>
+            <form id='admin-form' action="{{ Route('admin.login') }}" method="POST">
+              @csrf
               <!-- Email input -->
               <h1 class="h1 text-center">Увійти для адміна</h1>
               <div data-mdb-input-init class="form-outline mb-4">
-                <input type="email" id="login" name="login" class="form-control form-control-lg" />
+                <input type="text" id="login" name="login" class="form-control form-control-lg"
+                  value="{{ old('login') }}" />
                 <label class="form-label" for="login">Логін</label>
               </div>
 
