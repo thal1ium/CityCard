@@ -17,8 +17,8 @@
     <!-- Right elements -->
     <div class="d-flex align-items-center gap-1">
       @guest
-        <a href="{{ Route('user.show.login') }}" class="btn btn-primary">Увійти</a>
-        <a href="{{ Route('user.show.register') }}" class="btn btn-outline-primary">Реєстрація</a>
+        <a href="{{ Route('login') }}" class="btn btn-primary">Увійти</a>
+        <a href="{{ Route('register') }}" class="btn btn-outline-primary">Реєстрація</a>
       @endguest
       @auth
         <form action="{{ Route('user.logout') }}" method="POST">

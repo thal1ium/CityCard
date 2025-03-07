@@ -15,10 +15,6 @@
   ];
 @endphp
 
-{{-- <style>
-  
-</style> --}}
-
 <li class="list__item">
   <div class="type {{ $colors[$type] }}">
     <i class="fa-solid fa-id-card"></i>

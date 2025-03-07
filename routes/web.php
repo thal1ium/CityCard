@@ -9,8 +9,8 @@ use App\Http\Controllers\Auth\UserAuthController;
 Route::get("/", [UserController::class, "index"])->name('');
 
 // User
-Route::get('/login', [UserAuthController::class, 'showLoginPage'])->name('user.show.login');
-Route::get('/register', [UserAuthController::class, 'showRegisterPage'])->name('user.show.register');
+Route::get('/login', [UserAuthController::class, 'showLoginPage'])->name('login');
+Route::get('/register', [UserAuthController::class, 'showRegisterPage'])->name('register');
 Route::post('/login', [UserAuthController::class, 'login'])->name('user.login');
 Route::post('/register', [UserAuthController::class, 'register'])->name('user.register');
 Route::post('/logout', [UserAuthController::class, 'logout'])->name('user.logout');

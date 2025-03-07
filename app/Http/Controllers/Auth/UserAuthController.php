@@ -27,6 +27,10 @@ class UserAuthController extends Controller
             'password' => 'required|min:6',
         ]);
 
+        $validatedNumber = $this->phoneValidator($request->phone);
+
+        $request->merge(['phone' => $validatedNumber]);
+
         $credentials = $request->only('phone', 'password');
 
         if (Auth::guard('web')->attempt($credentials)) {
@@ -39,13 +43,19 @@ class UserAuthController extends Controller
     public function register(Request $request)
     {
         $request->validate([
-            'phone' => 'required|unique:users|regex:/^\+?[0-9]{10,15}$/',
+            'phone' => 'required|unique:users',
             'password' => 'required|min:6|confirmed',
         ]);
 
         try {
+            $validatedNumber = $this->phoneValidator($request->phone);
+            
+            if (!$validatedNumber) {
+                throw new \Exception("Номер телефона не валидный");
+            }
+
             $user = User::create([
-                'phone' => $request->phone,
+                'phone' => $validatedNumber,
                 'password' => Hash::make($request->password),
             ]);
         } catch (\Exception $e) {
@@ -61,9 +71,25 @@ class UserAuthController extends Controller
     {
         Auth::logout();
 
-        session()->invalidate(); 
-        session()->regenerateToken(); 
-        
-        return redirect()->route('user.show.login');
+        session()->invalidate();
+        session()->regenerateToken();
+
+        return redirect()->route('login');
+    }
+
+    private function phoneValidator(string $number)
+    {
+        if (preg_match('/[a-zA-Zа-яА-Я]/', $number)) {
+            return null;
+        }
+
+        $digits = preg_replace('/\D/','', $number);
+        $digitsCount = strlen($digits);
+
+        if($digitsCount < 12 || $digitsCount > 16) {
+            return null;
+        }
+
+        return '+' . $digits;
     }
 }
