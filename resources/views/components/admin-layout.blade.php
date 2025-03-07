@@ -4,8 +4,8 @@
 <x-head></x-head>
 
 <body>
-  <x-header></x-header>
-
+  <x-admin-header></x-admin-header>
+  
   <main class="main container">
     {{ $slot }}
   </main>
