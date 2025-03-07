@@ -36,4 +36,14 @@ npm run build
 composer run dev
 ```
 
-...
+3. Виконай міграції
+
+```bash
+php artisan migrate
+```
+
+4. Виконай сидери
+
+```bash
+php artisan db:seed
+```
