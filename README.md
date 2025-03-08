@@ -24,9 +24,26 @@ cp .env.example .env
 php artisan key:generate
 ```
 
+1.2  Добав пароль DB_PASSWORD
+
 <hr>
 
-2. Запуск дев режиму
+2. Виконай міграції
+
+```bash
+php artisan migrate
+```
+<hr>
+
+3. Виконай сидери
+
+```bash
+php artisan db:seed
+```
+
+<hr>
+
+4. Запуск дев режиму
 
 ```bash
 npm run build
@@ -36,14 +53,8 @@ npm run build
 composer run dev
 ```
 
-3. Виконай міграції
+або
 
 ```bash
-php artisan migrate
-```
-
-4. Виконай сидери
-
-```bash
-php artisan db:seed
+php artisan serve
 ```
