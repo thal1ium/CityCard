@@ -1,3 +1,5 @@
+@section('title', 'Реєстрація')
+
 <x-layout>
   <section class="auth-section">
     <div class="d-flex flex-column gap-3 align-items-center container py-5">

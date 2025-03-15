@@ -2,6 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\User;
+use App\Models\Tariffs;
+use App\Models\CardHistory;
+use App\Models\TravelHistory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,7 +19,7 @@ class Card extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function tariffs() {
+    public function tariff() {
         return $this->belongsTo(Tariffs::class);
     }
 

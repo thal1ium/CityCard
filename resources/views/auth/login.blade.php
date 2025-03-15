@@ -1,4 +1,4 @@
-@section('title', 'Login')
+@section('title', 'Реєстрація')
 
 <x-layout>
   <section class="auth-section">

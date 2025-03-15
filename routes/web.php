@@ -17,6 +17,7 @@ Route::post('/logout', [UserAuthController::class, 'logout'])->name('user.logout
 
 Route::middleware('auth:web')->group(function () {
   Route::get('/home', [UserController::class, 'index'])->name('user.show.home');
+  Route::get('/cards', [UserController::class, 'showCards'])->name('user.show.cards');
 });
 
 
@@ -27,4 +28,8 @@ Route::post('/admin/logout', [AdminAuthController::class, 'logout'])->name('admi
 
 Route::middleware('auth:admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+});
+
+Route::fallback(function () {
+  return view('404');
 });

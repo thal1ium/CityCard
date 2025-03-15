@@ -64,7 +64,7 @@ class UserAuthController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('user.show.home');
+        return redirect()->route('user.show.cards');
     }
 
     public function logout()

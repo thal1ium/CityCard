@@ -7,9 +7,9 @@
       <!-- Left links -->
       @auth
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <x-nav-link :active="request()->routeIs('/cards')" href="/">Мої картки</i></x-nav-link>
-          <x-nav-link :active="request()->routeIs('/cards')" href="/cards">Мої транзакції</i></x-nav-link>
-          <x-nav-link :active="request()->routeIs('/cards')" href="/cards">Додати картку</i></x-nav-link>
+          <x-nav-link :active="request()->routeIs('user.show.cards')" href="/cards">Мої картки</i></x-nav-link>
+          <x-nav-link :active="request()->routeIs('/cards')" href="/card-transaction">Мої транзакції</i></x-nav-link>
+          <x-nav-link :active="request()->routeIs('/cards')" href="/add-card">Додати картку</i></x-nav-link>
         </ul>
       @endauth
     </div>
