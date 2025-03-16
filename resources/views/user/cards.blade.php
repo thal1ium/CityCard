@@ -1,12 +1,16 @@
 @section('title', 'Мої картки')
 
-<x-layout>
+<x-layout>  
     <h1 class="h1 mb-3">Мої картки:</h1>
     <ul class="list list-group list-group-flush">
         @foreach ($cards as $card)
+            {{-- @php
+                dd($card->cityTariff);
+            @endphp --}}
+
             <x-card-item 
                 :number="$card->number" 
-                :phone="$card->user->phone" :city="$card->tariff->city->name" :type="$card->tariff->type"
+                :phone="$card->user->phone" :city="$card->cityTariff->city->name" :type="$card->cityTariff->tariff->type"
                 :balance="$card->balance"></x-card-item>
         @endforeach
     </ul>
