@@ -2,21 +2,25 @@
 
 namespace App\Models;
 
-use Illuminate\Container\Attributes\Tag;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class City extends Model
+class Tariff extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['type'];
+
+    // public function city() {
+    //     return $this->belongsTo(City::class);
+    // }
 
     public function cityTariff() {
         return $this->hasMany(CityTariff::class);
-    }    
+    }
+    
 
-    public static function getCities() {
-        return City::get();
+    public static function getTariffs() {
+        return Tariff::get();
     }
 }

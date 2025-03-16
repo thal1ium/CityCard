@@ -11,7 +11,11 @@ class Transport extends Model
 
     protected $fillable = ['type'];
 
-    public function transportTariffs() {
-        return $this->hasMany(TransportTariff::class);
+    public function cityTariff() {
+        return $this->hasMany(CityTariff::class);
+    }
+    
+    public static function getTransports() {
+        return Transport::get();
     }
 }
