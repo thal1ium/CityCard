@@ -16,7 +16,10 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(AdminSeeder::class);
         // $this->call(CitySeeder::class);
-        // $this->call(TariffsSeeder::class);
-        // $this->call(CardSeeder::class);
+        // $this->call(TariffSeeder::class);
+        // $this->call(TransportSeeder::class);
+        // $this->call(CityTariffSeeder::class);
+        // $this->call(User::class);
+        $this->call(CardSeeder::class);
     }
 }

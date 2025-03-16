@@ -13,6 +13,6 @@ class CitySeeder extends Seeder
      */
     public function run(): void
     {
-        City::factory()->create(["name"=> "Луцьк"]);
+        City::factory()->create(["name"=> "Львів"]);
     }
 }

@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('transport_tariffs', function (Blueprint $table) {
+        Schema::create('tariffs', function (Blueprint $table) {
             $table->id();
-            $table->decimal('price',10,2);
-            $table->foreignId('tariff_id')->constrained('tariffs')->cascadeOnDelete();
-            $table->foreignId('transport_id')->constrained('transports')->cascadeOnDelete();
+            $table->string('type');
             $table->timestamps();
         });
     }
@@ -25,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('transport_tariffs');
+        Schema::dropIfExists('tariffs');
     }
 };

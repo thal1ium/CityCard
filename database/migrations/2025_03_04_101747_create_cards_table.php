@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('number', 10)->unique();
             $table->decimal('balance',10,2)->default(0);
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
-            $table->foreignId('tariff_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('city_tariff_id')->constrained('city_tariffs')->cascadeOnDelete();
             $table->timestamps();
         });
     }

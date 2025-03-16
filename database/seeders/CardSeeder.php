@@ -13,11 +13,19 @@ class CardSeeder extends Seeder
      */
     public function run(): void
     {
-        Card::factory()->create([
-            'number' => "0000000000",
-            'balance' => 500,
-            'user_id' => 4,
-            'tariff_id' => 4 
+        Card::factory()->createMany([
+            [
+                'number' => "0000000000",
+                'balance' => 500,
+                'user_id' => 1,
+                'city_tariff_id' => 1
+            ],
+            [
+                'number' => "0000000001",
+                'balance' => 400,
+                'user_id' => 1,
+                'city_tariff_id' => 2
+            ]
         ]);
     }
 }

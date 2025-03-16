@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tariffs', function (Blueprint $table) {
+        Schema::create('city_tariffs', function (Blueprint $table) {
             $table->id();
-            $table->string('type');
+            $table->decimal('price', 10, 2)->default(0);
+            $table->foreignId('tariff_id')->constrained('tariffs')->cascadeOnDelete();
             $table->foreignId('city_id')->constrained('cities')->cascadeOnDelete();
+            $table->foreignId('transport_id')->constrained('transports')->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tariffs');
+        Schema::dropIfExists('city_tariffs');
     }
 };
