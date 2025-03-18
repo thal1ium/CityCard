@@ -1,11 +1,14 @@
 <?php
 
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\AdminAuthController;
+use App\Http\Controllers\CityTariffController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\UserAuthController;
-use App\Http\Controllers\DataController;
+use App\Http\Controllers\CityController;
+use App\Http\Controllers\TariffController;
+use App\Http\Controllers\TransportControler;
+use App\Models\CityTariff;
 
 Route::get('/', [UserController::class, 'index'])->name('home');
 
@@ -26,16 +29,23 @@ Route::prefix('user')->group(function () {
     });
 });
 
-Route::get('/data/tariffs/{id}', [DataController::class, 'getTariffsByCity']);
+Route::get('/data/tariffs/{id}', [CityTariff::class, 'getTariffsByCity']);
 
 // Admin
-Route::prefix('admin')->group(function () {
-    Route::get('/login', [AdminAuthController::class, 'loginPage'])->name('admin.show.login');
-    Route::post('/login', [AdminAuthController::class, 'login'])->name('admin.login');
-    Route::post('/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/login', [AdminAuthController::class, 'loginPage'])->name('show.login');
+    Route::post('/login', [AdminAuthController::class, 'login'])->name('login');
+    Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
 
     Route::middleware('auth:admin')->group(function () {
-        Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+        Route::get('/', function() {
+            return view("admin.index");
+        })->name('index');
+
+        Route::resource('/cities', CityController::class)->only(['index', 'create', 'store', 'update', 'destroy']);
+        Route::resource('/tariffs', TariffController::class)->only(['index', 'create', 'store', 'update', 'destroy']);
+        Route::resource('/transports', TransportControler::class)->only(['index', 'create', 'store', 'update', 'destroy']);
+        Route::resource('/city-tariffs', CityTariffController::class)->only(['index', 'create', 'store', 'update', 'destroy']);
     });
 });
 
