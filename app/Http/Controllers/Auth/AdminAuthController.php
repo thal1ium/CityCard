@@ -23,7 +23,7 @@ class AdminAuthController extends Controller
         $credentials = $request->only('login', 'password');
 
         if (Auth::guard('admin')->attempt($credentials)) {
-            return redirect('/dashboard');
+            return redirect()->route('admin.index');
         }
 
         return back()->withErrors(['login' => 'Не правильний номер або пароль']);
