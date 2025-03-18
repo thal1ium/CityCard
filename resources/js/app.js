@@ -7,19 +7,23 @@ const citySelect = document.querySelector("#city");
 
 if (citySelect) {
   citySelect.addEventListener("change", (e) => {
+    console.log(e.target.value);
     getTariffsByCity(e.target.value);
   });
 }
 
-function getTariffsByCity(id) {
+function getTariffsByCity(cityId) {
   const tariffSelect = document.querySelector("#tariff");
 
-  if (id) {
-    axios.get(`/data/tariffs/${id}`).then((response) => {
+  if (cityId) {
+    axios.get(`/data/tariffs/${cityId}`).then((response) => {
+      console.log(response.data);
+
       tariffSelect.innerHTML = '<option value="">Оберіть тариф</option>';
 
       response.data.forEach(function (tariff) {
-        tariffSelect.innerHTML += `<option value="${tariff.id}">${tariff.type} | Ціна: ${tariff.price}</option>`;
+        console.log(tariff);
+        tariffSelect.innerHTML += `<option value="${tariff.tariff_id}">${tariff.tariff.type} | Ціна: ${tariff.price}</option>`;
       });
     });
   } else {
