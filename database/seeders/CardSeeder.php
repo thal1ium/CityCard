@@ -24,7 +24,7 @@ class CardSeeder extends Seeder
                 'number' => "0000000001",
                 'balance' => 400,
                 'user_id' => 1,
-                'city_tariff_id' => 2
+                'city_tariff_id' => 5
             ]
         ]);
     }

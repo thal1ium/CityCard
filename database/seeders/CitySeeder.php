@@ -13,6 +13,22 @@ class CitySeeder extends Seeder
      */
     public function run(): void
     {
-        City::factory()->create(["name"=> "Львів"]);
+        City::factory()->createMany([
+            [
+                "name"=> "Луцьк"
+            ],
+            [
+                "name"=> "Львів"
+            ],
+            [
+                "name"=> "Ужгород"
+            ],
+            [
+                "name"=> "Харків"
+            ],
+            [
+                "name"=> "Тернопіль"
+            ]
+        ]);
     }
 }

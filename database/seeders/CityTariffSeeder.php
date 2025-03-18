@@ -41,25 +41,25 @@ class CityTariffSeeder extends Seeder
             [
                 "price" => 17,
                 "tariff_id" => 1,
-                "city_id" => 1,
+                "city_id" => 2,
                 "transport_id" => 2,
             ],
             [
                 "price" => 14,
                 "tariff_id" => 2,
-                "city_id" => 1,
+                "city_id" => 2,
                 "transport_id" => 2,
             ],
             [
                 "price" => 10,
                 "tariff_id" => 3,
-                "city_id" => 1,
+                "city_id" => 2,
                 "transport_id" => 2,
             ],
             [
                 "price" => 0,
                 "tariff_id" => 4,
-                "city_id" => 1,
+                "city_id" => 2,
                 "transport_id" => 2,
             ],
         ]);
