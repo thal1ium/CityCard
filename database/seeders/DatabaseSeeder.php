@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         // $this->call(TransportSeeder::class);
         // $this->call(CityTariffSeeder::class);
         // $this->call(User::class);
-        $this->call(CardSeeder::class);
+        // $this->call(CardSeeder::class);
+        $this->call(CardHistorySeeder::class);
     }
 }
