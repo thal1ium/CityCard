@@ -18,31 +18,31 @@
                     ]"></x-dropdown-link>
                     <x-dropdown-link title="Тарифи" :links="[
                         [
-                            'href' => 'admin.cities.index',
+                            'href' => 'admin.tariffs.index',
                             'title' => 'Всі тарифи',
                         ],
                         [
-                            'href' => 'admin.cities.create',
+                            'href' => 'admin.tariffs.create',
                             'title' => 'Додати тариф',
                         ],
                     ]"></x-dropdown-link>
                     <x-dropdown-link title="Транспорт" :links="[
                         [
-                            'href' => 'admin.cities.index',
+                            'href' => 'admin.transports.index',
                             'title' => 'Всі транспорти',
                         ],
                         [
-                            'href' => 'admin.cities.create',
+                            'href' => 'admin.transports.create',
                             'title' => 'Додати транспорт',
                         ],
                     ]"></x-dropdown-link>
                     <x-dropdown-link title="Тарифи для міст" :links="[
                         [
-                            'href' => 'admin.cities.index',
+                            'href' => 'admin.city-tariffs.index',
                             'title' => 'Всі тарифи для міст',
                         ],
                         [
-                            'href' => 'admin.cities.create',
+                            'href' => 'admin.city-tariffs.create',
                             'title' => 'Додати тариф для міста',
                         ],
                     ]"></x-dropdown-link>
