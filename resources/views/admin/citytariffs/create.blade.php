@@ -34,7 +34,7 @@
         </div>
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Добавити ціну:</label>
-            <input type="number" name="price" class="form-control">
+            <input type="number" name="price" class="form-control" min="0">
         </div>
         <button type="submit" class="btn btn-primary" onclick="return confirm('Добавити ?')">Додати</button>
     </form>
