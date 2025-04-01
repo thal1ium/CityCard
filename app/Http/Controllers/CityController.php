@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CityStoreRequest;
+use App\Http\Requests\CityUpdateRequest;
 use App\Models\City;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -31,18 +32,19 @@ class CityController extends Controller
         return redirect()->route('admin.cities.create');
     }
 
-    public function update(Request $request, string $id): RedirectResponse 
+    public function update(CityUpdateRequest $request, City $city): RedirectResponse 
     {
-        $city = City::find($id);
+        $request->validated();
+
         $city->name = $request->input('name');
         $city->save();
 
         return redirect()->route('admin.cities.index');
     }
     
-    public function destroy(Request $request, string $id): RedirectResponse 
+    public function destroy(City $city): RedirectResponse 
     {
-        City::where('id', $id)->delete();
+        $city->delete();
         
         return redirect()->route('admin.cities.index');
     }

@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\TariffStoreRequest;
 use App\Models\Tariff;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class TariffController extends Controller
 {
-    public function index() 
+    public function index(): View 
     {
         $tariffs = Tariff::all();
 
@@ -20,7 +22,7 @@ class TariffController extends Controller
         return view('admin.tariffs.create');
     }
 
-    public function store(TariffStoreRequest $request) 
+    public function store(TariffStoreRequest $request): RedirectResponse 
     {
         $request->validated();
         
@@ -29,18 +31,17 @@ class TariffController extends Controller
         return redirect()->route('admin.tariffs.create');
     }
 
-    public function update(Request $request, string $id) 
+    public function update(Request $request, Tariff $tariff): RedirectResponse 
     {
-        $city = Tariff::find($id);
-        $city->type = $request->input('type');
-        $city->save();
+        $tariff->type = $request->input('type');
+        $tariff->save();
 
         return redirect()->route('admin.tariffs.index');
     }
     
-    public function destroy(Request $request, string $id) 
+    public function destroy(Tariff $tariff): RedirectResponse 
     {
-        Tariff::where('id', $id)->delete();
+        $tariff->delete();
         
         return redirect()->route('admin.tariffs.index');
     }

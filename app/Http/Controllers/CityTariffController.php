@@ -35,18 +35,17 @@ class CityTariffController extends Controller
         return redirect()->route('admin.city-tariffs.index');
     }
 
-    public function update(Request $request, string $id): RedirectResponse 
+    public function update(Request $request, CityTariff $cityTariff): RedirectResponse 
     {
-        $cityTariff = CityTariff::find($id);
         $cityTariff->price = $request->input('price');
         $cityTariff->save();
 
         return redirect()->route('admin.city-tariffs.index');
     }
     
-    public function destroy(Request $request, string $id): RedirectResponse 
+    public function destroy(CityTariff $cityTariff): RedirectResponse 
     {
-        CityTariff::where('id', $id)->delete();
+        $cityTariff->delete();
         
         return redirect()->route('admin.city-tariffs.index');
     }

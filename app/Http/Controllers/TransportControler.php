@@ -31,18 +31,17 @@ class TransportControler extends Controller
         return redirect()->route('admin.transports.create');
     }
 
-    public function update(Request $request, $id): RedirectResponse
+    public function update(Request $request, Transport $transport): RedirectResponse
     {
-        $transport = Transport::find($id);
         $transport->type = $request->input('type');
         $transport->save();
 
         return redirect()->route('admin.transports.index');
     }
     
-    public function destroy(Request $request, $id): RedirectResponse
+    public function destroy(Transport $transport): RedirectResponse
     {
-        Transport::where('id', $id)->delete();
+        $transport->delete();
         
         return redirect()->route('admin.transports.index');
     }
