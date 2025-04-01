@@ -4,21 +4,21 @@ namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminLoginRequest;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 
 class AdminAuthController extends Controller
 {
-
-    public function loginPage() {
+    public function loginPage(): View 
+    {
         return view('auth.login', ['role' => 'admin']);
     }
 
-    public function login(Request $request)
+    public function login(AdminLoginRequest $request): RedirectResponse
     {
-        $request->validate([
-            'login' => 'required',
-            'password' => 'required|min:6',
-        ]);
+        $request->validated();
 
         $credentials = $request->only('login', 'password');
 
@@ -29,7 +29,7 @@ class AdminAuthController extends Controller
         return back()->withErrors(['login' => 'Не правильний номер або пароль']);
     }
 
-    public function logout()
+    public function logout(): RedirectResponse
     {
         Auth::logout();
 

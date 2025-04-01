@@ -3,29 +3,30 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserLoginRequest;
+use App\Http\Requests\UserRegisterRequest;
 use App\Models\User;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserAuthController extends Controller
 {
-    public function showLoginPage()
+    public function showLoginPage(): View
     {
         return view('auth.login', ['role' => 'user']);
     }
 
-    public function showRegisterPage()
+    public function showRegisterPage(): View
     {
         return view('auth.registration');
     }
 
-    public function login(Request $request)
+    public function login(UserLoginRequest $request): RedirectResponse
     {
-        $request->validate([
-            'phone' => 'required',
-            'password' => 'required|min:6',
-        ]);
+        $request->validated();
 
         $validatedNumber = $this->phoneValidator($request->phone);
 
@@ -40,18 +41,15 @@ class UserAuthController extends Controller
         return back()->withErrors(['login' => 'Не правильний номер або пароль']);
     }
 
-    public function register(Request $request)
+    public function register(UserRegisterRequest $request): RedirectResponse
     {
-        $request->validate([
-            'phone' => 'required|unique:users',
-            'password' => 'required|min:6|confirmed',
-        ]);
+        $request->validated();
 
         try {
             $validatedNumber = $this->phoneValidator($request->phone);
             
             if (!$validatedNumber) {
-                throw new \Exception("Номер телефона не валидный");
+                throw new \Exception("Номер телефона не валідний");
             }
 
             $user = User::create([
