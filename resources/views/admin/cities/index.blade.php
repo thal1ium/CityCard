@@ -14,7 +14,7 @@
                 <tr>
                     <th scope="row">{{ $city->id }}</th>
                     <td>
-                        <form action="{{ route('admin.cities.update', $city->id) }}" method="POST" class="d-flex gap-2 w-100">
+                        <form action="{{ route('admin.cities.update', $city) }}" method="POST" class="d-flex gap-2 w-100">
                             @csrf
                             @method('PUT')
                             <input type="text" name="name" class="form-control" value="{{ $city->name }}">
@@ -22,7 +22,7 @@
                         </form>
                     </td>
                     <td>
-                        <form action="{{ route('admin.cities.destroy', $city->id) }}" method="POST">
+                        <form action="{{ route('admin.cities.destroy', $city) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger"

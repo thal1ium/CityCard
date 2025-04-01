@@ -5,27 +5,27 @@
         <table class="table mt-5">
             <tbody>
                 @if ($cityTariffs)
-                    @foreach ($cityTariffs as $item)
+                    @foreach ($cityTariffs as $cityTariff)
                         <tr>
-                            <th scope="row">{{ $item->id }}</th>
+                            <th scope="row">{{ $cityTariff->id }}</th>
                             <td>
-                                <form action="{{ route('admin.city-tariffs.update', $item->id) }}" method="POST"
+                                <form action="{{ route('admin.city-tariffs.update', $cityTariff) }}" method="POST"
                                     class="d-flex gap-2 w-100">
                                     @csrf
                                     @method('PUT')
                                     <input type="text" name="city" class="form-control"
-                                        value="{{ $item->city->name }}" disabled>
+                                        value="{{ $cityTariff->city->name }}" disabled>
                                     <input type="text" name="tariff" class="form-control"
-                                        value="{{ $item->tariff->type }}" disabled>
+                                        value="{{ $cityTariff->tariff->type }}" disabled>
                                     <input type="text" name="transport" class="form-control"
-                                        value="{{ $item->transport->type }}" disabled>
+                                        value="{{ $cityTariff->transport->type }}" disabled>
                                     <input type="text" name="price" class="form-control"
-                                        value="{{ $item->price }}">
+                                        value="{{ $cityTariff->price }}">
                                     <button type="submit" class="btn btn-primary">Оновити</button>
                                 </form>
                             </td>
                             <td>
-                                <form action="{{ route('admin.city-tariffs.destroy', $item->id) }}" method="POST">
+                                <form action="{{ route('admin.city-tariffs.destroy', $cityTariff) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger"

@@ -14,7 +14,7 @@
                 <tr>
                     <th scope="row">{{ $tariff->id }}</th>
                     <td>
-                        <form action="{{ route('admin.tariffs.update', $tariff->id) }}" method="POST" class="d-flex gap-2 w-100">
+                        <form action="{{ route('admin.tariffs.update', $tariff) }}" method="POST" class="d-flex gap-2 w-100">
                             @csrf
                             @method('PUT')
                             <input type="text" name="type" class="form-control" value="{{ $tariff->type }}">
@@ -22,7 +22,7 @@
                         </form>
                     </td>
                     <td>
-                        <form action="{{ route('admin.tariffs.destroy', $tariff->id) }}" method="POST">
+                        <form action="{{ route('admin.tariffs.destroy', $tariff) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger"
