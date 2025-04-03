@@ -37,6 +37,6 @@
 
     <div class="fail">
         <h1>404 Page not found</h1>
-        <a href='/cards'>Home</a>
+        <a href='/'>Home</a>
     </div>
 </x-layout>

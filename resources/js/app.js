@@ -14,18 +14,15 @@ if (citySelect) {
   });
 }
 
-function getTariffsByCity(cityId) {
+function getTariffsByCity(city) {
   const tariffSelect = document.querySelector("#tariff");
 
-  if (cityId) {
-    axios.get(`/data/tariffs/${cityId}`).then((response) => {
-      console.log(response.data);
-
+  if (city) {
+    axios.get(`/cities/${city}/tariffs`).then((response) => {
       tariffSelect.innerHTML = '<option value="">Оберіть тариф</option>';
 
       response.data.forEach(function (tariff) {
-        console.log(tariff);
-        tariffSelect.innerHTML += `<option value="${tariff.tariff_id}">${tariff.tariff.type} | Ціна: ${tariff.price}</option>`;
+        tariffSelect.innerHTML += `<option value="${tariff["id"]}">${tariff.tariff.type} | Транспорт ${tariff.transport.type} | Ціна: ${tariff.price} </option>`;
       });
     });
   } else {

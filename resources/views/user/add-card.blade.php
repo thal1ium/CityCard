@@ -17,23 +17,8 @@
             <label for="city" class="form-label">Тариф</label>
             <select class="form-select" id="tariff" name="tariff_id" required>
                 <option value="">Оберіть тариф</option>
-                {{-- @foreach ($tariffs as $tariff)
-                    <option value="{{ $tariff->id }}">{{ $tariff->type }}</option>
-                @endforeach --}}
             </select>
         </div>
-        
-        <div class="mb-3">
-            <label for="city" class="form-label">Транспорт</label>
-            <select class="form-select" id="transport" name="transport_id" required>
-                <option value="">Оберіть транспорт</option>
-                @foreach ($transports as $transport)
-                    <option value="{{ $transport->id }}">{{ $transport->type }}</option>
-                @endforeach
-            </select>
-        </div>
-
-        <p id="dd"></p>
 
         <button type="submit" class="btn btn-primary">Додати карточку</button>
     </form>
