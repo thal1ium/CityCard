@@ -14,13 +14,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // $this->call(AdminSeeder::class);
-        // $this->call(CitySeeder::class);
-        // $this->call(TariffSeeder::class);
-        // $this->call(TransportSeeder::class);
-        // $this->call(CityTariffSeeder::class);
+        $this->call(AdminSeeder::class);
+        $this->call(CitySeeder::class);
+        $this->call(TariffSeeder::class);
+        $this->call(TransportSeeder::class);
+        $this->call(CityTariffSeeder::class);
         // $this->call(User::class);
         // $this->call(CardSeeder::class);
-        $this->call(CardHistorySeeder::class);
+        // $this->call(CardHistorySeeder::class);
     }
 }
