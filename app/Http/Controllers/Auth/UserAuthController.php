@@ -72,7 +72,7 @@ class UserAuthController extends Controller
         session()->invalidate();
         session()->regenerateToken();
 
-        return redirect()->route('login');
+        return redirect()->route('user.login');
     }
 
     private function phoneValidator(string $number)

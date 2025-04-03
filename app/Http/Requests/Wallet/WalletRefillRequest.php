@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Wallet;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserStoreRequest extends FormRequest
+class WalletRefillRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +22,8 @@ class UserStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'tariff_id' => 'required',
+            'selected_card' => 'required',
+            'refill_amount' => 'required|min:1|numeric'
         ];
     }
 }
