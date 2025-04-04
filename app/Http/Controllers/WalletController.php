@@ -28,6 +28,7 @@ class WalletController extends Controller
     {
         $walletStoreRequest->validated();
 
+        /** @var \App\Models\User $user */
         $user = Auth::user();
 
         UserTransaction::create([
@@ -48,12 +49,13 @@ class WalletController extends Controller
     {
         $walletRefillRequest->validated();
 
+        /** @var \App\Models\User $user */
         $user = Auth::user();
         $card = Card::where('id', $walletRefillRequest->input('selected_card'))->first();
 
         $sum = $walletRefillRequest->input('refill_amount');
 
-        if (($user->balance <= 0) | ($user->balance - $sum < 0)) {
+        if (($user->balance <= 0) || ($user->balance - $sum < 0)) {
             return redirect()->back();
         }
 

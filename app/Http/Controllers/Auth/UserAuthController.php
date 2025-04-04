@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\UserLoginRequest;
-use App\Http\Requests\UserRegisterRequest;
 use App\Models\User;
-use Illuminate\Contracts\View\View;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use App\Services\PhoneFormatter;
+use Illuminate\Contracts\View\View;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\UserLoginRequest;
+use App\Http\Requests\UserRegisterRequest;
 
 class UserAuthController extends Controller
 {
@@ -28,7 +29,7 @@ class UserAuthController extends Controller
     {
         $request->validated();
 
-        $validatedNumber = $this->phoneValidator($request->phone);
+        $validatedNumber = PhoneFormatter::normalize($request->phone);
 
         $request->merge(['phone' => $validatedNumber]);
 
@@ -46,7 +47,7 @@ class UserAuthController extends Controller
         $request->validated();
 
         try {
-            $validatedNumber = $this->phoneValidator($request->phone);
+            $validatedNumber = PhoneFormatter::normalize($request->phone);
             
             if (!$validatedNumber) {
                 throw new \Exception("Номер телефона не валідний");
@@ -73,21 +74,5 @@ class UserAuthController extends Controller
         session()->regenerateToken();
 
         return redirect()->route('user.login');
-    }
-
-    private function phoneValidator(string $number)
-    {
-        if (preg_match('/[a-zA-Zа-яА-Я]/', $number)) {
-            return null;
-        }
-
-        $digits = preg_replace('/\D/','', $number);
-        $digitsCount = strlen($digits);
-
-        if($digitsCount < 12 || $digitsCount > 16) {
-            return null;
-        }
-
-        return '+' . $digits;
     }
 }

@@ -2,23 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CityTariffStoreRequest;
 use App\Models\City;
-use App\Models\CityTariff;
 use App\Models\Tariff;
 use App\Models\Transport;
-use Illuminate\Contracts\View\View;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Http\RedirectResponse;
+use App\Models\CityTariff;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Database\Eloquent\Collection;
+use App\Http\Requests\CityTariffStoreRequest;
+use App\Http\Requests\CityTariffUpdateRequest;
 
 class CityTariffController extends Controller
 {
     public function index(): View
     {
-        $cityTariff = CityTariff::all();
+        $cityTariffs = CityTariff::all();
 
-        return view('admin.citytariffs.index', ['cityTariffs' => $cityTariff]);
+        return view('admin.citytariffs.index', ['cityTariffs' => $cityTariffs]);
     }
 
     public function create(): View
@@ -35,9 +36,9 @@ class CityTariffController extends Controller
         return redirect()->route('admin.city-tariffs.index');
     }
 
-    public function update(Request $request, CityTariff $cityTariff): RedirectResponse 
+    public function update(CityTariffUpdateRequest $cityTariffUpdateRequest, CityTariff $cityTariff): RedirectResponse 
     {
-        $cityTariff->price = $request->input('price');
+        $cityTariff->price = $cityTariffUpdateRequest->input('price');
         $cityTariff->save();
 
         return redirect()->route('admin.city-tariffs.index');
